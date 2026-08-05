@@ -21,6 +21,9 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-kafka'
     implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+
+    implementation 'org.springframework.ai:spring-ai-starter-model-openai:2.0.0'
+
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     testImplementation 'org.springframework.boot:spring-boot-starter-kafka-test'
     testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'

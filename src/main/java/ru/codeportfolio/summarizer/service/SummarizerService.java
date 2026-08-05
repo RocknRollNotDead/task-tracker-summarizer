@@ -1,6 +1,7 @@
 package ru.codeportfolio.summarizer.service;
 
 import org.springframework.stereotype.Service;
+import ru.codeportfolio.summarizer.AiClient;
 import ru.codeportfolio.summarizer.controller.ReportKafkaSender;
 import ru.codeportfolio.summarizer.dto.ReportDto;
 import ru.codeportfolio.summarizer.dto.ReportRequestDto;
@@ -23,13 +24,13 @@ public class SummarizerService {
             а также задачи со статусом DONE, которые он выполнил сегодня.
             Вот ты должен в summary отчёте рассказать о выполненных сегодня и невыполненных задачах.
             
-            Вот его задачи:
-            %s
             """;
+    private final AiClient aiClient;
 
-    public SummarizerService(ReportKafkaSender reportKafkaSender, ObjectMapper objectMapper) {
+    public SummarizerService(ReportKafkaSender reportKafkaSender, ObjectMapper objectMapper, AiClient aiClient) {
         this.reportKafkaSender = reportKafkaSender;
         this.objectMapper = objectMapper;
+        this.aiClient = aiClient;
     }
 
     public void execute(ReportRequestDto reportRequestDto) {
@@ -47,8 +48,8 @@ public class SummarizerService {
 
         String tasks = objectMapper.writeValueAsString(userDto.tasks());
 
-        String request = promt.formatted(userDto.name(), tasks);
+        String request = aiClient.get(promt.formatted(userDto.name()), tasks);
 
-
+        return request;
     }
 }
