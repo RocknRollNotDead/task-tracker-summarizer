@@ -3,9 +3,13 @@ spring.application.name: summarizer
 spring:
   ai:
     openai:
-      api-key: ${XAI_API_KEY}
-      base-url: https://api.x.ai/v1
+      api-key: ${AI_API_KEY}
+      base-url: https://openrouter.ai/api/v1
 
       chat:
-        model: grok-4-fast
+        model: nvidia/nemotron-3-ultra-550b-a55b:free
         temperature: 0.1
+
+
+kafka:
+  url: ${LOCALHOST:kafka}:9092

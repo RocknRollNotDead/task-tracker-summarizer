@@ -1,9 +1,9 @@
-package ru.codeportfolio.summarizer;
+package ru.codeportfolio.summarizer.service;
 
 import org.springframework.stereotype.Service;
 
 import org.springframework.ai.chat.client.ChatClient;
-
+//@Transactional // если будет ошибка запросов
 @Service
 public class AiClient {
 

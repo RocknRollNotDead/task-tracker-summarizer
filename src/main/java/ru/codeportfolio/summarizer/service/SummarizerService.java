@@ -1,22 +1,18 @@
 package ru.codeportfolio.summarizer.service;
 
 import org.springframework.stereotype.Service;
-import ru.codeportfolio.summarizer.AiClient;
 import ru.codeportfolio.summarizer.controller.ReportKafkaSender;
 import ru.codeportfolio.summarizer.dto.ReportDto;
 import ru.codeportfolio.summarizer.dto.ReportRequestDto;
-import ru.codeportfolio.summarizer.dto.TaskDto;
 import ru.codeportfolio.summarizer.dto.UserDto;
 import tools.jackson.databind.ObjectMapper;
-
-import java.util.List;
 
 @Service
 public class SummarizerService {
     private final ReportKafkaSender reportKafkaSender;
     private final ObjectMapper objectMapper;
 
-    private static String promt =
+    private static String PROMT =
             """
             Сделай summary для задач юзера %s на русском языке.
             
@@ -48,7 +44,7 @@ public class SummarizerService {
 
         String tasks = objectMapper.writeValueAsString(userDto.tasks());
 
-        String request = aiClient.get(promt.formatted(userDto.name()), tasks);
+        String request = aiClient.get(PROMT.formatted(userDto.name()), tasks);
 
         return request;
     }
