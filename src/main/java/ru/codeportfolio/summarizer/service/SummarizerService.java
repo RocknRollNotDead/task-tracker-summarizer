@@ -10,7 +10,6 @@ import tools.jackson.databind.ObjectMapper;
 @Service
 public class SummarizerService {
     private final ReportKafkaSender reportKafkaSender;
-    private final ObjectMapper objectMapper;
 
     private static String PROMT =
             """
@@ -23,9 +22,8 @@ public class SummarizerService {
             """;
     private final AiClient aiClient;
 
-    public SummarizerService(ReportKafkaSender reportKafkaSender, ObjectMapper objectMapper, AiClient aiClient) {
+    public SummarizerService(ReportKafkaSender reportKafkaSender, AiClient aiClient) {
         this.reportKafkaSender = reportKafkaSender;
-        this.objectMapper = objectMapper;
         this.aiClient = aiClient;
     }
 
@@ -35,7 +33,7 @@ public class SummarizerService {
 
             String report = getReportFromAi(userDto);
 
-            reportKafkaSender.sendRequest(objectMapper.writeValueAsString(new ReportDto(userDto.id(), report)));
+            reportKafkaSender.sendRequest(new ReportDto(userDto.id(), report));
         }
 
     }
