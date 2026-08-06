@@ -1,10 +1,11 @@
-package ru.codeportfolio.summarizer.service;
+package ru.codeportfolio.summarizer.dao;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import org.springframework.ai.chat.client.ChatClient;
+
 //@Transactional // если будет ошибка запросов
-@Service
+@Component
 public class AiClient {
 
 

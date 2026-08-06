@@ -1,6 +1,7 @@
 package ru.codeportfolio.summarizer.service;
 
 import org.springframework.stereotype.Service;
+import ru.codeportfolio.summarizer.dao.AiClient;
 import ru.codeportfolio.summarizer.dto.ReportDto;
 import ru.codeportfolio.summarizer.dto.ReportRequestDto;
 import ru.codeportfolio.summarizer.dto.UserDto;

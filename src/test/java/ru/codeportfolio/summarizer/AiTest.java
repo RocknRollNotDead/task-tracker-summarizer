@@ -3,23 +3,16 @@ package ru.codeportfolio.summarizer;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import ru.codeportfolio.summarizer.dto.Status;
-import ru.codeportfolio.summarizer.dto.TaskDto;
+import ru.codeportfolio.summarizer.dao.AiClient;
 import ru.codeportfolio.summarizer.dto.UserDto;
-import ru.codeportfolio.summarizer.service.AiClient;
 import ru.codeportfolio.summarizer.service.SummarizerService;
 import tools.jackson.databind.ObjectMapper;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @SpringBootTest
 class AiTest {
 
     @Autowired
     AiClient aiClient;
-    @Autowired
-    private SummarizerService summarizerService;
     @Autowired
     private ObjectMapper objectMapper;
 
@@ -56,13 +49,14 @@ class AiTest {
     void testSummary() {
 
 
-        var userDto = new UserDto(1L, "Юра", new ArrayList<>(List.of(
-                new TaskDto("Попить воды", Status.IN_PROGRESS),
-                new TaskDto("Выучить 20 слов на английском", Status.IN_PROGRESS),
-                new TaskDto("сделать схему проекта с классами - граф", Status.DONE),
-                new TaskDto("Пофиксить все ошибки аутентификации (исправить 500), создать тесты", Status.IN_PROGRESS),
-                new TaskDto("Купить тикет", Status.DONE)
-        )));
+        var userDto = new UserDto(1L, "Юра", """
+                {name: "Попить воды", status: "IN_PROGRESS"},
+                {name: "Выучить 20 слов на английском", status: "DONE"},
+                {name: "сделать схему проекта с классами - граф", status: "IN_PROGRESS"},
+                {name: "Пофиксить все ошибки аутентификации (исправить 500), создать тесты", status: "IN_PROGRESS"},
+                {name: "Купить тикет", status: "DONE"}
+                """
+        );
 
         String tasks = objectMapper.writeValueAsString(userDto.tasks());
 
