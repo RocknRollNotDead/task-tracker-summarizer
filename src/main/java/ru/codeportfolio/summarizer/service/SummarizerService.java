@@ -1,7 +1,6 @@
 package ru.codeportfolio.summarizer.service;
 
 import org.springframework.stereotype.Service;
-import ru.codeportfolio.summarizer.controller.ReportKafkaSender;
 import ru.codeportfolio.summarizer.dto.ReportDto;
 import ru.codeportfolio.summarizer.dto.ReportRequestDto;
 import ru.codeportfolio.summarizer.dto.UserDto;
@@ -42,10 +41,6 @@ public class SummarizerService {
 
     private String getReportFromAi(UserDto userDto) {
 
-        String tasks = objectMapper.writeValueAsString(userDto.tasks());
-
-        String request = aiClient.get(PROMT.formatted(userDto.name()), tasks);
-
-        return request;
+        return aiClient.get(PROMT.formatted(userDto.name()), userDto.tasks());
     }
 }

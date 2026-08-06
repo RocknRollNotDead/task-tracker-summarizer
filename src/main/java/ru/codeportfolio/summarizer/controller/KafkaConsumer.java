@@ -19,7 +19,7 @@ public class KafkaConsumer {
         this.objectMapper = objectMapper;
     }
 
-    @KafkaListener(topics = "REPORT_REQUEST", groupId = "id")
+    @KafkaListener(topics = "REPORT_REQUEST")
     public void consume(String json){
         ReportRequestDto reportRequestDto = objectMapper.readValue(json, ReportRequestDto.class);
         summarizerService.execute(reportRequestDto);

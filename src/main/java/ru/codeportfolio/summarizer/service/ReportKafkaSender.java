@@ -1,7 +1,6 @@
-package ru.codeportfolio.summarizer.controller;
+package ru.codeportfolio.summarizer.service;
 
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 
 @Service
