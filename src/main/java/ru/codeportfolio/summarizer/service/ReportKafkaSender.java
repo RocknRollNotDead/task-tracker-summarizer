@@ -2,23 +2,18 @@ package ru.codeportfolio.summarizer.service;
 
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
-import ru.codeportfolio.summarizer.dto.ReportDto;
-import tools.jackson.databind.ObjectMapper;
 
 @Service
 public class ReportKafkaSender {
 
-    private final KafkaTemplate<String, String> kafkaTemplate;
-    private final ObjectMapper objectMapper;
+    private final KafkaTemplate<Long, String> kafkaTemplate;
 
-    public ReportKafkaSender(KafkaTemplate<String, String> kafkaTemplate, ObjectMapper objectMapper) {
+    public ReportKafkaSender(KafkaTemplate<Long, String> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
-        this.objectMapper = objectMapper;
     }
 
-    public void sendRequest(ReportDto reportDto){
+    public void sendRequest(Long userId, String report) {
 
-        String request = objectMapper.writeValueAsString(reportDto);
-        kafkaTemplate.send("SUMMARIZATION_SENDING", request);
+        kafkaTemplate.send("SUMMARIZATION_SENDING", userId, report);
     }
 }

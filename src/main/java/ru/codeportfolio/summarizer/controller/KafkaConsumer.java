@@ -20,7 +20,7 @@ public class KafkaConsumer {
     }
 
     @KafkaListener(topics = "REPORT_REQUEST")
-    public void consume(String json){
+    public void consume(String json) {
         ReportRequestDto reportRequestDto = objectMapper.readValue(json, ReportRequestDto.class);
         summarizerService.execute(reportRequestDto);
     }
