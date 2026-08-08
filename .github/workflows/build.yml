@@ -21,3 +21,6 @@ jobs:
         run: |
           docker build -t appleapplenotdead/task-tracker-summarizer:${{ github.sha }} .
           docker push appleapplenotdead/task-tracker-summarizer:${{ github.sha }}
+          
+          docker tag appleapplenotdead/task-tracker-summarizer:${{ github.sha }} appleapplenotdead/task-tracker-summarizer:latest
+          docker push appleapplenotdead/task-tracker-summarizer:latest
