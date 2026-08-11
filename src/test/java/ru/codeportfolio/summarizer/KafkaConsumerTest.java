@@ -32,7 +32,7 @@ class KafkaConsumerTest {
     void shouldParseJson() {
         kafkaConsumer = new KafkaConsumer(summarizerService, objectMapper);
 
-        String json = "{\"usersDto\":[]}";
+        String json = String.valueOf(new ReportRequestDto(List.of()));
         ReportRequestDto reportRequestDto = new ReportRequestDto(List.of());
         when(objectMapper.readValue(eq(json), eq(ReportRequestDto.class))).thenReturn(reportRequestDto);
 
