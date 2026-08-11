@@ -30,6 +30,10 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
+test {
+    exclude '**/AiTest.class'
+}
+
 tasks.named('test') {
     useJUnitPlatform()
 }

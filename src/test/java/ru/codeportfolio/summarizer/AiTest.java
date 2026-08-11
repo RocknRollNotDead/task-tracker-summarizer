@@ -27,7 +27,7 @@ class AiTest {
             
             """;
 
-//    @Test
+    @Test
     void testSummary() {
 
 
