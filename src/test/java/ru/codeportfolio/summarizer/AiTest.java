@@ -8,6 +8,7 @@ import ru.codeportfolio.summarizer.dto.UserDto;
 import ru.codeportfolio.summarizer.service.SummarizerService;
 import tools.jackson.databind.ObjectMapper;
 
+// тест для пинга нейросети по api
 @SpringBootTest
 class AiTest {
 
@@ -26,26 +27,7 @@ class AiTest {
             
             """;
 
-
-
-/*    @Test
-    void testAi() {
-
-        String result = aiClient.get("""
-                Я делаю запрос через Spring Boot.
-                У меня Spring AI требует ввести значения в двух местах - "PROMT" и "text".
-                Этот текст я пишу в "PROMT".
-                """, """
-                Мне нужно делать запросы к тебе для Summary отчётов по данным.
-                Как лучше их запрашивать? Этот текст я пишу в "text".
-                """);
-
-        System.out.println(result);
-    }*/
-
-
-
-    @Test
+//    @Test
     void testSummary() {
 
 
