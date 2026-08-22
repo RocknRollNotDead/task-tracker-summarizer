@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import ru.codeportfolio.summarizer.dao.AiClient;
 import ru.codeportfolio.summarizer.dto.UserDto;
-import ru.codeportfolio.summarizer.service.SummarizerService;
 import tools.jackson.databind.ObjectMapper;
 
 // тест для пинга нейросети по api

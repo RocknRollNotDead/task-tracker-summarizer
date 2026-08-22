@@ -12,6 +12,9 @@ spring:
         model: nvidia/nemotron-3-ultra-550b-a55b:free
         temperature: 0.1
 
+      timeout: 240s
+      max-retries: 5
+
 
 kafka:
   url: ${LOCALHOST:kafka}:9092
